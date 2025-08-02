@@ -50,7 +50,12 @@ export default function HomeScreen() {
         <Feather name="box" size={40} color="#0066CC" />
         <Text style={styles.featureTitle}>Item Master</Text>
         <Text style={styles.featureDesc}>Add, edit and manage inventory items.</Text>
-        <TouchableOpacity style={styles.goBtn} onPress={() => router.push('/item')}>
+        <TouchableOpacity
+          style={styles.goBtn}
+          onPress={() => {
+            router.push('/item');
+          }}
+        >
           <Text style={styles.goText}>Go to Items</Text>
           <Feather name="arrow-right" size={16} color="#fff" />
         </TouchableOpacity>

@@ -16,7 +16,7 @@ const RegisterSchema = Yup.object().shape({
 
 export default function RegisterScreen() {
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // ✅ added
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleRegister = async (values: { full_name: string; email: string; password: string }) => {
     setLoading(true);
@@ -25,7 +25,6 @@ export default function RegisterScreen() {
       Alert.alert('Register Success', res.message || 'Please check your email');
       router.replace('/');
     } catch (err: any) {
-      console.log('Register error:', err);
       Alert.alert('Register Failed', err.response?.data?.message || 'Something went wrong');
     } finally {
       setLoading(false);
@@ -46,6 +45,7 @@ export default function RegisterScreen() {
             <TextInput
               style={styles.input}
               placeholder="Full Name"
+              placeholderTextColor="#666"
               onChangeText={handleChange('full_name')}
               onBlur={handleBlur('full_name')}
               value={values.full_name}
@@ -55,6 +55,7 @@ export default function RegisterScreen() {
             <TextInput
               style={styles.input}
               placeholder="Email"
+              placeholderTextColor="#666"
               keyboardType="email-address"
               autoCapitalize="none"
               onChangeText={handleChange('email')}
@@ -65,10 +66,9 @@ export default function RegisterScreen() {
 
             <View style={styles.passwordWrapper}>
               <TextInput
-                style={[
-                  { flex: 1, marginBottom: 0, borderWidth: 0, backgroundColor: 'transparent', paddingVertical: 14, paddingHorizontal: 0 },
-                ]}
+                style={styles.passwordInput}
                 placeholder="Password"
+                placeholderTextColor="#666"
                 secureTextEntry={!showPassword}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 24,
     textAlign: 'center',
+    color: '#000',
   },
   form: {
     width: '100%',
@@ -128,6 +129,29 @@ const styles = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
     backgroundColor: '#FFF',
+    color: '#000',
+  },
+  passwordWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#AAA',
+    borderRadius: 8,
+    paddingHorizontal: 14,
+    backgroundColor: '#FFF',
+    marginBottom: 12,
+  },
+  passwordInput: {
+    flex: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 0,
+    backgroundColor: 'transparent',
+    color: '#000',
+  },
+  eyeIcon: {
+    paddingHorizontal: 10,
+    position: 'absolute',
+    right: 10,
   },
   button: {
     backgroundColor: '#0066CC',
@@ -151,25 +175,5 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 12,
     marginBottom: 8,
-  },
-  passwordWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#AAA',
-    borderRadius: 8,
-    paddingHorizontal: 14,
-    backgroundColor: '#FFF',
-    marginBottom: 12,
-  },
-  toggle: {
-    marginLeft: 8,
-    color: '#0066CC',
-    fontWeight: '600',
-  },
-  eyeIcon: {
-    paddingHorizontal: 10,
-    position: 'absolute',
-    right: 10,
   },
 });

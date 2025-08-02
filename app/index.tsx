@@ -5,11 +5,12 @@ import {
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { router } from 'expo-router';
-import { Feather } from '@expo/vector-icons'; // icon feather
+import { Feather } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // ⬅️ ini ditambah
 
 import { login } from '../services/auth.services';
 
-const LOGO = require('../assets/images/splash-new.png');
+const LOGO = require('../assets/images/ashley_splash1.png');
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Email not valid').required('Email is required'),
@@ -24,6 +25,12 @@ export default function LoginScreen() {
     setLoading(true);
     try {
       const user = await login(values.email, values.password);
+
+      // Simpan token ke AsyncStorage
+      if (user?.token) {
+        await AsyncStorage.setItem('token', user.token);
+      }
+
       Alert.alert('Login Success', `Welcome back, ${values.email}`);
       router.replace('/home');
     } catch (err: any) {
@@ -53,6 +60,7 @@ export default function LoginScreen() {
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
               value={values.email}
+              placeholderTextColor="#999"
             />
             {touched.email && errors.email && <Text style={styles.error}>{errors.email}</Text>}
 
@@ -65,6 +73,7 @@ export default function LoginScreen() {
                 onBlur={handleBlur('password')}
                 value={values.password}
                 autoCapitalize="none"
+                placeholderTextColor="#999"
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
@@ -88,11 +97,13 @@ export default function LoginScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => router.push('/forgot-password')}>
-              <Text style={styles.linkText}>Forgot Password?</Text>
+              <Text style={styles.linkText}>Forgot Your Password?</Text>
             </TouchableOpacity>
 
             <View style={styles.bottomRow}>
-              <Text>Do not have account?</Text>
+              <Text style={{ color: '#000', fontWeight: 'bold' }}>
+              Don’t have an account?
+            </Text>
               <TouchableOpacity onPress={() => router.push('/register')}>
                 <Text style={styles.registerLink}>Register</Text>
               </TouchableOpacity>
@@ -127,7 +138,8 @@ const styles = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
     backgroundColor: '#FFF',
-  },
+    color: '#000',
+},
   passwordWrapper: {
     flexDirection: 'row',
     alignItems: 'center',

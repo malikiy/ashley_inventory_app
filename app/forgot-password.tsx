@@ -42,6 +42,7 @@ export default function ForgotPasswordScreen() {
             <TextInput
               style={styles.input}
               placeholder="Your Email"
+              placeholderTextColor="#666"
               keyboardType="email-address"
               autoCapitalize="none"
               onChangeText={handleChange('email')}
@@ -69,18 +70,47 @@ export default function ForgotPasswordScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#FAFAFA' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 24, textAlign: 'center' },
-  form: { width: '100%' },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 24,
+    backgroundColor: '#FAFAFA',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 24,
+    textAlign: 'center',
+    color: '#000', // teks solid
+  },
+  form: {
+    width: '100%',
+  },
   input: {
-    borderWidth: 1, borderColor: '#AAA', borderRadius: 8,
-    padding: 14, marginBottom: 12, backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor: '#AAA',
+    borderRadius: 8,
+    padding: 14,
+    marginBottom: 12,
+    backgroundColor: '#FFF',
+    color: '#000', 
   },
   button: {
-    backgroundColor: '#0066CC', borderRadius: 8,
-    paddingVertical: 16, marginTop: 8, marginBottom: 16,
+    backgroundColor: '#0066CC',
+    borderRadius: 8,
+    paddingVertical: 16,
+    marginTop: 8,
+    marginBottom: 16,
     alignItems: 'center',
   },
-  buttonText: { color: '#FFF', fontSize: 18, fontWeight: '600' },
-  error: { color: 'red', fontSize: 12, marginBottom: 8 },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 8,
+  },
 });

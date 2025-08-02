@@ -4,13 +4,13 @@
     "slug": "ashleyInventory",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/prima_hotel_indonesia_logo.jpg",
+    "icon": "./assets/images/ashley_icon.png",
     "scheme": "ashleyinventory",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
-      "image": "./assets/images/icon.png",
-      "resizeMode": "contain",
+      "image": "./assets/images/ashley_splash1.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
@@ -18,22 +18,29 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/ashley_icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.ashleyInventory"
+      "package": "com.anonymous.ashleyInventory",
+      "usesCleartextTraffic": true
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/ashley_icon.png"
     },
     "plugins": [
       "expo-router"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "94e8adcc-0e39-44e3-b788-81e205833af2"
+      }
     }
   }
 }

@@ -16,8 +16,6 @@ export async function register(full_name, email, password) {
 
 export async function forgotPassword(email) {
   const res = await api.post('/auth/forgot-password', { email });
-  console.log(res.data);
-  
   return res.data;
 }
 

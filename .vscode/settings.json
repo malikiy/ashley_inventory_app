@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "javascript.implicitProjectConfig.checkJs": false,
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
